@@ -6,7 +6,7 @@ import requests
 
 
 tmpfile = "sma.tmp"
-outfile = "SMA_calibrators.cat"
+outfile = "../SMA_calibrators.cat"
 url = "http://sma1.sma.hawaii.edu/callist/callist.html"
 
 response = requests.get(url)
@@ -71,8 +71,8 @@ for ikey in source_dic:
 
     
 ofile = open(outfile, "wt")
-header = "NAME\tRA\tDEC\tRA_REF\tDEC_REF\tEPOCH\tFLUX3mm\tFLUX1mm\tFLUX850um\tRaProperMotionCor\tDecProperMotionCor\tVlsr\n"
-lineTemp = "{name}\t{ra}\t{dec}\t{ra}\t{dec}\t2000\t{f3mm:.2f}\t{f1mm}\t{f850um}\t0\t0\t0\n"
+header = "NAME\tRA\tDEC\tRA_REF\tDEC_REF\tEPOCH\tCoordsys\tFLUX3mm\tFLUX1mm\tFLUX850um\tRaProperMotionCor\tDecProperMotionCor\tVlsr\tVelSys\n"
+lineTemp = "{name}\t{ra}\t{dec}\t{ra}\t{dec}\t2000\tEq\t{f3mm:.2f}\t{f1mm}\t{f850um}\t0\t0\t0\tLsr\n"
 ofile.write(header)
 for ikey in source_dic:
     ofile.write(lineTemp.format(**source_dic[ikey]))
